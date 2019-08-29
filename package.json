@@ -1,0 +1,23 @@
+{
+  "name": "phoneapp",
+  "version": "1.0.0",
+  "description": "Simple Phone Application that helps to add, update, delete contact details",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mehuldesai94/Phone-Directory.git"
+  },
+  "author": "mmdesai",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mehuldesai94/Phone-Directory/issues"
+  },
+  "homepage": "https://github.com/mehuldesai94/Phone-Directory#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

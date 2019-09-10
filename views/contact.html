@@ -3,10 +3,10 @@
 
 <head>
   <style>
-    input {
+    input, select {
       margin: 4px;
       width: 250px;
-      align   
+      
     }
   </style>
 </head>
@@ -37,7 +37,7 @@
           <legend>Phone</legend>
           <!-- <label for="phoneNumber">Phone</label> -->
           <input id="phoneNumber" type="text" name="phoneNumber" placeholder="phone" /><br />
-          <select>
+          <select id="phoneType">
             <option value="mobile">Mobile</option>
             <option value="work">Work</option>
             <option value="home">Home</option>
@@ -48,7 +48,7 @@
           <legend>Email</legend>
           <!-- <label for="emailAddress">Phone</label> -->
           <input id="emailAddress" type="text" name="emailAddress" placeholder="email" /><br />
-          <select>
+          <select id="emailType">
             <option value="home">Home</option>
             <option value="work">Work</option>
             <option value="other">Other</option>
@@ -60,7 +60,7 @@
           <input id="photo" type="file" name="photo" /><br />
         </fieldset>
 
-        <input type="submit" value="Submit File" />
+        <input type="submit" value="Add Person" />
       </form>
     </div>
   </fieldset>

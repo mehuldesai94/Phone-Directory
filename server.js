@@ -18,7 +18,7 @@ var Schema = mongoose.Schema;
 
 app.use(express.static("static"));
 app.use(bodyParser.urlencoded({ extended: true }));
-app.engine('.hbs', exphbs({ extname: '.hbs' }));
+app.engine('.hbs', exphbs({ extname: '.hbs', defaultLayout: 'main'}));
 app.set('view engine', '.hbs');
 
 
@@ -65,7 +65,7 @@ const upload = multer({storage:storage});
 app.get("/", (req, res)=>{
   //  res.send("Mehul, You can do it...");
   // res.sendFile(path.join(__dirname, "/views/contact.html"));
-  res.render(contact);
+  res.render("contact");
 })
 
 
@@ -114,12 +114,12 @@ person.save((error, data)=>{
     console.log("Data save successfully !!!");
 });
  // res.send("Hello mehul")
-  res.render("allContacts", {data: person, layout: false});
+  res.render("allContacts", {data: person});
 });
 
 app.get("/updateContact/:contactNumber", (req, res)=>{
     Contact.find({contactNumber: req.params.contactNumber}).then((person)=>{
-      res.render("contact", {data: person, layout:false});
+      res.render("contact", {data: person});
     })
 })
 

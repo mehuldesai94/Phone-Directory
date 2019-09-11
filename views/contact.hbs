@@ -21,7 +21,7 @@
 </head>
 
 <body>
-  <h1>Phone Directory</h1>
+  
 
 
   {{#if data}}
@@ -69,7 +69,7 @@
 
             <fieldset>
               <legend>Photo</legend>
-              <input id="photo" type="file" name="photo" value="{{data.photo['contentType']}}"/><br />
+              <input id="photo" type="file" name="photo" value="{{data.photo.contentType}}"/><br />
             </fieldset>
 
             <input type="submit" value="Update Person" />

@@ -64,7 +64,8 @@ const upload = multer({storage:storage});
 //home path
 app.get("/", (req, res)=>{
   //  res.send("Mehul, You can do it...");
-  res.sendFile(path.join(__dirname, "/views/contact.html"));
+  // res.sendFile(path.join(__dirname, "/views/contact.html"));
+  res.render(contact);
 })
 
 
@@ -75,34 +76,35 @@ app.get("/about", (req, res) => {
 
 
 //add contact page
-app.post("/register-user", upload.single("photo"), (req, res) => {
-    const formData = req.body;
-    const formFile = req.file;
+// app.post("/register-user", upload.single("photo"), (req, res) => {
+//     const formData = req.body;
+//     const formFile = req.file;
   
-    const dataReceived = "Your submission was received:<br/><br/>" +
-      "Your form data was:<br/>" + JSON.stringify(formData) + "<br/><br/>" +
-      "Your File data was:<br/>" + JSON.stringify(formFile) +
-      "<br/><p>This is the image you sent:<br/><img src='/photos/" + formFile.filename + "'/>";
-    res.send(dataReceived);
-  });
+//     const dataReceived = "Your submission was received:<br/><br/>" +
+//       "Your form data was:<br/>" + JSON.stringify(formData) + "<br/><br/>" +
+//       "Your File data was:<br/>" + JSON.stringify(formFile) +
+//       "<br/><p>This is the image you sent:<br/><img src='/photos/" + formFile.filename + "'/>";
+//     res.send(dataReceived);
+//   });
   
 
 //all contact display page
-app.get("/allContacts", (req, res)=>{
-
+app.post("/addContact", upload.single("photo"), (req, res)=>{
+  const formData = req.body;
+  const formFile = req.file;
   
 // create a new company
 var person = new Contact({
-  prefixName: (req.body.prefixName),
-  firstName : req.body.firstName,
-  lastName : req.body.lastName,
-  middleName : req.body.middleName,
-  sufixName: req.body.sufixName,
-  phoneNumber: req.body.phoneNumber,
-  phoneType: req.body.phoneType,
-  emailAddress: req.body.emailAddress,
-  emailType:req.body.emailType,
-  photo : {data: Buffer, contentType:req.body.photo}
+  prefixName: (formData.prefixName),
+  firstName : formData.firstName,
+  lastName : formData.lastName,
+  middleName : formData.middleName,
+  sufixName: formData.sufixName,
+  phoneNumber: formData.phoneNumber,
+  phoneType: formData.phoneType,
+  emailAddress: formData.emailAddress,
+  emailType: formData.emailType,
+  photo : {data: Buffer, contentType:formFile}
 });
 
 person.save((error, data)=>{
@@ -114,6 +116,12 @@ person.save((error, data)=>{
  // res.send("Hello mehul")
   res.render("allContacts", {data: person, layout: false});
 });
+
+app.get("/updateContact/:contactNumber", (req, res)=>{
+    Contact.find({contactNumber: req.params.contactNumber}).then((person)=>{
+      res.render("contact", {data: person, layout:false});
+    })
+})
 
 
 

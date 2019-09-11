@@ -1,0 +1,164 @@
+<!doctype html>
+<html>
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <style>
+    input,
+    select {
+      margin: 4px;
+      width: 250px;
+
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Phone Directory</h1>
+
+
+  {{#if data}}
+  <fieldset>
+    <legend>Update Person</legend>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6" style="border:1px dashed #6495de;padding:16px;">
+          <form action="/addContact" method="POST" enctype="multipart/form-data">
+            <fieldset>
+              <legend>Name</legend>
+              <!-- <label for="prefixName">Name Prefix</label> -->
+              <input id="prefixName" type="text" name="prefixName" value="{{data.prefixName}}" /><br />
+              <!-- <label for="firstName">First Name</label> -->
+              <input id="firstName" type="text" name="firstName" value="{{data.firstName}}" /><br />
+              <!-- <label for="lastName">Last Name</label> -->
+              <input id="lastName" type="text" name="lastLame" value="{{data.lastName}}" /><br />
+              <!-- <label for="middleName">Middle Name</label> -->
+              <input id="middleName" type="text" name="middleName" value="{{data.middleName}}" /><br />
+              <!-- <label for="sufixName">Name</label> -->
+              <input id="sufixName" type="text" name="sufixName" value="{{data.sufixName}}" /><br />
+            </fieldset>
+
+            <fieldset>
+              <legend>Phone</legend>
+              <!-- <label for="phoneNumber">Phone</label> -->
+              <input id="phoneNumber" type="text" name="phoneNumber" value="{{data.phoneNumber}}" /><br />
+              <select id="phoneType">
+                <option value="mobile" {{#equal data.phoneType "mobile" }} selected {{/equal}}>Mobile</option>
+                <option value="work" {{#equal data.phoneType "work" }} selected {{/equal}}>Work</option>
+                <option value="home" {{#equal data.phoneType "home" }} selected {{/equal}}>Home</option>
+              </select>
+            </fieldset>
+
+            <fieldset>
+              <legend>Email</legend>
+              <!-- <label for="emailAddress">Phone</label> -->
+              <input id="emailAddress" type="text" name="emailAddress" value="{{data}}" /><br />
+              <select id="emailType">
+                <option value="home" {{#equal data.emailType "home" }} selected {{/equal}}>Home</option>
+                <option value="work" {{#equal data.emailType "work" }} selected {{/equal}}>Work</option>
+                <option value="other"{{#equal data.emailType "other" }} selected {{/equal}}>Other</option>
+              </select>
+            </fieldset>
+
+            <fieldset>
+              <legend>Photo</legend>
+              <input id="photo" type="file" name="photo" value="{{data.photo['contentType']}}"/><br />
+            </fieldset>
+
+            <input type="submit" value="Update Person" />
+          </form>
+        </div>
+        <div class="col-md-6"
+          style="text-align: center; font-family: 'Courier New', Courier, monospace; color: #6495de">
+          photo preview coming soon!!
+          <!-- <img src='/photos/" + formFile.filename + "'/> -->
+        </div>
+      </div>
+
+    </div>
+  </fieldset>
+  {{else}}
+  <fieldset>
+    <legend>Add Person</legend>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6" style="border:1px dashed #6495de;padding:16px;">
+          <form action="/addContact" method="POST" enctype="multipart/form-data">
+            <fieldset>
+              <legend>Name</legend>
+              <!-- <label for="prefixName">Name Prefix</label> -->
+              <input id="prefixName" type="text" name="prefixName" placeholder="Name Prefix" /><br />
+              <!-- <label for="firstName">First Name</label> -->
+              <input id="firstName" type="text" name="firstName" placeholder="First Name" /><br />
+              <!-- <label for="lastName">Last Name</label> -->
+              <input id="lastName" type="text" name="lastLame" placeholder="Last Name" /><br />
+              <!-- <label for="middleName">Middle Name</label> -->
+              <input id="middleName" type="text" name="middleName" placeholder="Middle Name" /><br />
+              <!-- <label for="sufixName">Name</label> -->
+              <input id="sufixName" type="text" name="sufixName" placeholder="Sufix Name" /><br />
+            </fieldset>
+
+            <fieldset>
+              <legend>Phone</legend>
+              <!-- <label for="phoneNumber">Phone</label> -->
+              <input id="phoneNumber" type="text" name="phoneNumber" placeholder="phone" /><br />
+              <select id="phoneType">
+                <option value="mobile">Mobile</option>
+                <option value="work">Work</option>
+                <option value="home">Home</option>
+              </select>
+            </fieldset>
+
+            <fieldset>
+              <legend>Email</legend>
+              <!-- <label for="emailAddress">Phone</label> -->
+              <input id="emailAddress" type="text" name="emailAddress" placeholder="email" /><br />
+              <select id="emailType">
+                <option value="home">Home</option>
+                <option value="work">Work</option>
+                <option value="other">Other</option>
+              </select>
+            </fieldset>
+
+            <fieldset>
+              <legend>Photo</legend>
+              <input id="photo" type="file" name="photo" /><br />
+            </fieldset>
+
+            <input type="submit" value="Add Person" />
+          </form>
+        </div>
+        <div class="col-md-6"
+          style="text-align: center; font-family: 'Courier New', Courier, monospace; color: #6495de">
+          photo preview coming soon!!
+          <!-- <img src='/photos/" + formFile.filename + "'/> -->
+        </div>
+      </div>
+
+    </div>
+  </fieldset>
+
+
+  {{/if}}
+
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+
+</body>
+
+</html>

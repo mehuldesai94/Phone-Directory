@@ -1,24 +1,30 @@
 <!doctype html>
 <html>
-    <head>
-        <title>View Data</title>
-    </head>
 
-    <body>
-        
+<head>
+    <title>View Data</title>
+</head>
+
+<body>
+    
+        <input type="hidden" value="{{data.contactNumber}}" />
         <table border='1'>
             <tr>
                 <th>Full Name</th>
                 <th>Phone</th>
                 <th>email</th>
-                
+                <th>Edit</th>
+                <th>Delete</th>
             </tr>
-            <tr>  
-                <td>{{data.firstName}} {{data.lastName}}</td> 
+            <tr>
+                <td>{{data.firstName}} {{data.lastName}}</td>
                 <td>{{data.phoneNumber}}</td>
-                <td>{{data.email}}</td>
-                
+                <td>{{data.emailAddress}}</td>
+                <td><a href="/updateContact/{{data.contactNumber}}"/>Update</td>
+                <td><a href="/deleteContact/{{data.contactNumber}}">Delete</a></td>
             </tr>
         </table>
-    </body>
+    
+</body>
+
 </html>
